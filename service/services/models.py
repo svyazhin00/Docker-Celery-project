@@ -1,6 +1,8 @@
 from django.core.validators import MaxValueValidator
 from django.db import models
 from clients.models import *
+
+
 class Services(models.Model):
     """Модель сервиса"""
     name = models.CharField(max_length=50)
@@ -23,6 +25,7 @@ class Plan(models.Model):
                                                    ])
     def __str__(self):
         return self.plan_type
+
 class Subscriptions(models.Model):
     """Модель подписок пользователей"""
     client = models.ForeignKey(Client, related_name='subscriptions', on_delete=models.PROTECT)
@@ -31,7 +34,6 @@ class Subscriptions(models.Model):
 
     def __str__(self):
         return f'Subscription {self.client} by service {self.service}'
-
 
 
 
